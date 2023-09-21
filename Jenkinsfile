@@ -41,7 +41,6 @@ pipeline {
         }
         stage('Test'){
             steps{
-                cleanWs()
                 sh 'mvn -s settings.xml test'
             }
             
