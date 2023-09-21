@@ -42,7 +42,7 @@ pipeline {
         stage('Test'){
             steps{
                 cleanWs()
-                sh 'mvn -s settings.xml test'
+                sh 'mvn -s D:\JenkinsProject\vprofile-project\settings.xml test'
             }
             
         }
