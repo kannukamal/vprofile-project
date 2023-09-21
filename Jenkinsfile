@@ -32,7 +32,7 @@ pipeline {
             }
             post {
                 success{
-                    echo "Now Archiving"
+                    echo "Now Archiving and checking is just commiting."
                     archiveArtifacts artifacts: '**/*.war'
                 }
             }
