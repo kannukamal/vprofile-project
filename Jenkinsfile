@@ -2,9 +2,14 @@ def COLOR_MAP = [
     'SUCCESS': 'good', 
     'FAILURE': 'danger',
 ]
+
 pipeline {
     
 	agent any
+     tools {
+        maven "MAVEN3"
+        jdk "OracleJDK8"
+    }
 /*	
 	tools {
         maven "maven3"
@@ -45,12 +50,12 @@ pipeline {
           
 
         }
-        // stage('Test'){
-        //     steps {
-        //         sh 'mvn -s settings.xml test'
-        //     }
+        stage('Test'){
+            steps {
+                sh 'mvn -s settings.xml test'
+            }
             
-        // }
+        }
         stage('Checkstyle Analysis'){
             steps {
                 sh 'mvn -s settings.xml checkstyle:checkstyle'
