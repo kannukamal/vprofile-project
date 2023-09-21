@@ -17,6 +17,7 @@ pipeline {
     }
 */	
     environment {
+        JAVA_HOME = '/usr/lib/jvm/java-1.8.0-openjdk-amd64'
         SNAP_REPO = 'vprofile-snapshot'
         NEXUS_USER = 'admin'
         NEXUS_PASS = 'Kamal9737@'
