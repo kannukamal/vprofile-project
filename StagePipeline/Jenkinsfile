@@ -110,7 +110,7 @@ pipeline {
                 }
             }
         }
-        stage('upload app registry'){
+        stage('upload app image'){
             steps{
                 script{
                     docker.withRegistry(vprofileRegistry,registryCredential){
