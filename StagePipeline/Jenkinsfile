@@ -35,6 +35,9 @@ pipeline {
         ARTVERSION = "${env.BUILD_ID}"
         SONARSERVER = "sonarserver"
         SONARSCANNER = "sonarscanner"
+        registryCredential = 'ecr:us-east-1:awscreds'
+        appRegistry = '122472793507.dkr.ecr.us-east-1.amazonaws.com/vprofileappimg'
+        vprofileRegistry = 'https://122472793507.dkr.ecr.us-east-1.amazonaws.com'
     }
 	
     stages{
@@ -97,6 +100,25 @@ pipeline {
                      type: 'war']
                   ]
                 )
+            }
+        }
+        stage("Build Docker File"){
+            steps{
+                script{
+                    dockerImage = docker.build( appRegistry + ":$BUILD_NUMBER", "./Docker-files/app/multistage/")
+                    
+                }
+            }
+        }
+        stage('upload app registry'){
+            steps{
+                script{
+                    docker.withRegistry(vprofileRegistry,registryCredential){
+                    dockerImage.push("$BUILD_NUMBER")
+                    docketImage.push('latest')
+
+                    }
+                }
             }
         }
 
